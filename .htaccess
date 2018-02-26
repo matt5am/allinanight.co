@@ -1,0 +1,2 @@
+RewriteCond %{HTTP_HOST} =http://www.allinanight.co
+RewriteRule ^(.*)$ http://aian.starkregenkarten.de/$1 [R=permanent,L]

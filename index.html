@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Prompt:200" rel="stylesheet">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
@@ -21,6 +21,7 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <script src="js/suncalc.js"></script>
 
     </head>
     <body>
@@ -30,10 +31,10 @@
 
         <div class="ui stackable three column grid" style="margin-top: 10%;">
             <div class="six wide column"></div>
-            <div class="four wide column" style="color: #ffffff; font-size: 15px;">
+            <div class="four wide column" style="font-size: 18px;">
                 Hi, my name is Matze Falk from Nuremberg, Germany and I am currently working as CTO at spekter.de
-                <br><br><br>
-                <u>I am a Full-Stack Developer specialized into:</u>
+                <br><br><br><br>
+                I am a Full-Stack Developer specialized into:
                 <br><br>
                 <a href="https://angularjs.org/" target="_blank">angularjs</a> / <a href="https://vuejs.org/" target="_blank">vuejs</a> / <a href="https://reactjs.org/" target="_blank">reactjs</a>
                 <br><br>
@@ -42,7 +43,7 @@
                 <a href="https://www.mongodb.com/" target="_blank">mongodb</a> / <a href="https://www.mysql.com/" target="_blank">mysql</a>
                 <br><br>
                 <a href="https://webpack.js.org/" target="_blank">webpack</a> / <a href="https://developers.google.com/web/progressive-web-apps/" target="_blank">pwa</a> / <a href="https://developers.google.com/web/fundamentals/primers/service-workers/" target="_blank">service worker</a> / <a href="https://www.tensorflow.org/" target="_blank">tensorflow</a> / <a href="https://www.resin.io/" target="_blank">resin.io</a> / <a href="https://aws.amazon.com/de/" target="_blank">aws</a>
-                <br><br><br>
+                <br><br><br><br>
                 If you have cool ideas to work on or if you are searching for someone to help you build great Web Applications don‘t mind to contact me here:
                 <br><br>
                 <div style="text-align: center;">
@@ -54,11 +55,58 @@
                 <p>„And don‘t hesitate to ask - we‘ve done this all in a night.“</p>
                 <br>
                 <div style="text-align: center;">
-                    <i class="huge moon outline icon" style="color: #ffffff;"></i>
+                    <i class="huge moon outline icon"></i>
                 </div>
             </div>
             <div class="six wide column"></div>
         </div>
+
+
+        <script>
+
+            $(document).ready(function () {
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {   
+
+                        var times = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
+
+                        let dayTimeHour = (new Date()).getHours();
+
+                        if(dayTimeHour > times.sunset.getHours() || dayTimeHour < times.sunrise.getHours) {
+                            document.body.style.background = '#212529';
+                            document.body.style.color = '#ffffff';
+                        } else {
+                            document.body.style.background = '#ffffff';
+                            document.body.style.color = '#495057';
+                        }
+
+                    });
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+
+                $('#dayTimeSwitch').on("change", function () {
+                    
+                    console.log(currentDayTime);
+
+                    if(currentDayTime == "day") {
+                        document.body.style.background = '#ffffff';
+                        currentDayTime = 'night';
+                    }
+                    if(currentDayTime == "night") {
+                        document.body.style.background = '#ffffff';
+                        currentDayTime = 'day';
+                    }
+                });
+
+                function toggleDayTime() {
+     
+                } 
+
+            });
+
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

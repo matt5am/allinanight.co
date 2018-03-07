@@ -2,6 +2,7 @@ body {
     font-family: 'Prompt', sans-serif;
     background-color: #ffffff;
     text-shadow: none;
+    transition: all 2s ease; 
 }
 
 h4 {

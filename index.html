@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>allinanight.co | freelancer developer full stack nodejs react angular</title>
-        <meta name="description" content="You are searching for a freelancer to build web applications from cutting edge technology.">
+        <title>allinanight.co | Nürnberg Nuremberg developer node nodejs freelancer</title>
+        <meta name="description" content="Freelancer nodejs from Nürnberg specialized into full stack web development">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.min.css">
@@ -21,7 +21,10 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-        <script src="js/suncalc.js"></script>
+
+        <link rel="stylesheet" href="node_modules/xterm/dist/xterm.css" />
+        <script src="node_modules/xterm/dist/xterm.js"></script>
+    
 
     </head>
     <body>
@@ -29,83 +32,83 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="ui stackable three column grid" style="margin-top: 10%;">
+        <div class="ui stackable three column grid" style="margin-top: 2%;">
             <div class="six wide column"></div>
-            <div class="four wide column" style="font-size: 18px;">
-                Hi, my name is Matze Falk from Nuremberg, Germany and I am currently working as CTO at spekter.de
-                <br><br><br><br>
-                I am a Full-Stack Developer specialized into:
+            <div class="four wide column" style="font-size: 18px; line-height: 24px;">
+                <img class="ui medium centered image" alt="Freelancer nodejs Nürnberg develop Nuremberg developer" src="img/aian-logo.png" style="width: 200px;">
+                <br><br>
+                Hi, my name is Matthias Falk from Nürnberg, Germany and I am currently working as CTO at <a href="http://www.spekter.de" target="_blank">spekter.de</a>
+                <br><br><br>
+                I am a full stack developer specialized into:
                 <br><br>
                 <a href="https://angularjs.org/" target="_blank">angularjs</a> / <a href="https://vuejs.org/" target="_blank">vuejs</a> / <a href="https://reactjs.org/" target="_blank">reactjs</a>
                 <br><br>
-                <a href="https://nodejs.org/" target="_blank">nodejs</a> / <a href="https://www.meteor.com/" target="_blank">meteorjs</a> / <a href="http://expressjs.com/" target="_blank">expressjs</a> / <a href="http://koajs.com/" target="_blank">koajs</a>
+                <a href="https://nodejs.org/" target="_blank">nodejs</a> / <a href="https://www.meteor.com/" target="_blank">meteorjs</a> / <a href="http://expressjs.com/" target="_blank">expressjs</a>
                 <br><br>
                 <a href="https://www.mongodb.com/" target="_blank">mongodb</a> / <a href="https://www.mysql.com/" target="_blank">mysql</a>
                 <br><br>
                 <a href="https://webpack.js.org/" target="_blank">webpack</a> / <a href="https://developers.google.com/web/progressive-web-apps/" target="_blank">pwa</a> / <a href="https://developers.google.com/web/fundamentals/primers/service-workers/" target="_blank">service worker</a> / <a href="https://www.tensorflow.org/" target="_blank">tensorflow</a> / <a href="https://www.resin.io/" target="_blank">resin.io</a> / <a href="https://aws.amazon.com/de/" target="_blank">aws</a>
-                <br><br><br><br>
-                If you have cool ideas to work on or if you are searching for someone to help you build great Web Applications don‘t mind to contact me here:
+                <br><br><br>
+                If you have cool ideas to work on or if you are searching for someone to help you build great web applications don‘t mind to contact me here:
                 <br><br>
                 <div style="text-align: center;">
                     <a href="https://www.linkedin.com/in/matthias-falk" target="_blank"><i class="big linkedin icon" style="color: #C5CED6;"></i></a>
                     <a href="https://www.xing.com/profile/Matthias_Falk8" target="_blank"><i class="big xing square icon" style="color: #C5CED6;"></i></a>
                     <a href="https://twitter.com/matzehulk" target="_blank"><i class="big twitter icon" style="color: #C5CED6;"></i></a>
                 </div>
-                <br><br><br><br>
-                <p>„And don‘t hesitate to ask - we‘ve done this all in a night.“</p>
-                <br>
+                <br><br>
                 <div style="text-align: center;">
-                    <i class="huge moon outline icon"></i>
+                    <i class="huge terminal icon" style="color: #C5CED6;"></i>
                 </div>
             </div>
             <div class="six wide column"></div>
         </div>
 
-
+        <div class="ui modal">
+                <i class="close icon"></i>
+                <div class="content">
+                    <div id="terminal-container"></div>
+                </div>
         <script>
 
-            $(document).ready(function () {
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {   
-
-                        var times = SunCalc.getTimes(new Date(), position.coords.latitude, position.coords.longitude);
-
-                        let dayTimeHour = (new Date()).getHours();
-
-                        if(dayTimeHour > times.sunset.getHours() || dayTimeHour < times.sunrise.getHours) {
-                            document.body.style.background = '#212529';
-                            document.body.style.color = '#ffffff';
-                        } else {
-                            document.body.style.background = '#ffffff';
-                            document.body.style.color = '#495057';
-                        }
-
-                    });
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-
-                $('#dayTimeSwitch').on("change", function () {
-                    
-                    console.log(currentDayTime);
-
-                    if(currentDayTime == "day") {
-                        document.body.style.background = '#ffffff';
-                        currentDayTime = 'night';
-                    }
-                    if(currentDayTime == "night") {
-                        document.body.style.background = '#ffffff';
-                        currentDayTime = 'day';
-                    }
+            let terminalContainer = document.getElementById('terminal-container');
+            
+            let term = new Terminal({
+                cursorBlink: true
                 });
 
-                function toggleDayTime() {
-     
-                } 
-
-            });
-
+            term.open(terminalContainer);
+            
+            let shellprompt = '$ ';
+            
+                term.prompt = function () {
+                term.write('\r\n' + shellprompt);
+                };
+            
+                term.writeln('Welcome to xterm.js');
+                term.writeln('');
+                term.prompt();
+            
+                term.on('key', function (key, ev) {
+                let printable = (
+                    !ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey
+                );
+            
+                if (ev.keyCode == 13) {
+                    term.prompt();
+                } else if (ev.keyCode == 8) {
+                // Do not delete the prompt
+                    if (term.x > 2) {
+                    term.write('\b \b');
+                    }
+                } else if (printable) {
+                    term.write(key);
+                }
+                });
+            
+                term.on('paste', function (data, ev) {
+                term.write(data);
+                });
         </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
